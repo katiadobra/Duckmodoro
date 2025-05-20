@@ -1,13 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="flex flex-center column">
+    <h1 class="text-h4 q-mb-md">Duckmodoro</h1>
+    <DuckTimer />
   </q-page>
 </template>
 
 <script setup>
-//
+import DuckTimer from 'components/DuckTimer.vue'
 </script>
