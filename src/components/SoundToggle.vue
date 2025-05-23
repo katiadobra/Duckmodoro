@@ -12,7 +12,7 @@
 import { ref } from 'vue'
 
 // 1. Створюємо аудіо
-const audio = new Audio(new URL('../assets/sounds/garden-sunny-day.mp3', import.meta.url).href)
+const audio = new Audio(new URL('/assets/sounds/garden-sunny-day.mp3', import.meta.url).href)
 
 // 2. Створюємо стан
 const isPlaying = ref(false)

@@ -37,10 +37,18 @@ function formatPhase(phase) {
 
 <style scoped>
 .tracker-board {
+  position: absolute;
+  right: 0;
+  top: 22%;
   width: 160px;
   border-radius: 8px;
   background: #fffbea;
   border: 10px solid #dec9a4;
   font-family: 'Quicksand', sans-serif;
+
+  .body--dark & {
+    background: rgb(128 102 99 / 82%);
+    border: 10px solid rgb(108 76 71 / 82%);
+  }
 }
 </style>

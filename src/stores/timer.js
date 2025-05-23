@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
-import breakSoundFile from '../assets/sounds/garden-sunny-day.mp3'
+import breakSoundFile from '/assets/sounds/garden-sunny-day.mp3'
 
 export const useTimerStore = defineStore('timer', () => {
   const phases = ['focus', 'short-break', 'focus', 'short-break', 'focus', 'long-break']
