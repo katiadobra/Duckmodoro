@@ -50,5 +50,9 @@ function formatPhase(phase) {
     background: rgb(128 102 99 / 82%);
     border: 10px solid rgb(108 76 71 / 82%);
   }
+
+  @media (max-width: 680px) {
+    display: none;
+  }
 }
 </style>

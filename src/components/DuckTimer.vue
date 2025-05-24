@@ -40,5 +40,11 @@ const reset = () => store.resetTimer()
     background: rgb(128 102 99 / 82%);
     border: 10px solid rgb(108 76 71 / 82%);
   }
+
+  @media (max-width: 680px) {
+    bottom: auto;
+    top: 10%;
+    left: 18%;
+  }
 }
 </style>

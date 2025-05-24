@@ -1,5 +1,5 @@
 <template>
-  <img :src="duckImage" class="duck" />
+  <img :src="duckImage" class="duck" :style="style" />
 </template>
 
 <script setup>
@@ -9,11 +9,15 @@ import working from '/assets/ducks/working.png'
 import coffee from '/assets/ducks/coffee.png'
 import relax from '/assets/ducks/relax.png'
 import { computed } from 'vue'
-// import { useSoundStore } from 'src/stores/sound'
+
+defineProps({
+  style: Object,
+})
 
 const store = useTimerStore()
 const { currentPhase } = storeToRefs(store)
 
+// 🦆
 const duckImage = computed(() => {
   switch (currentPhase.value) {
     case 'focus':
@@ -31,15 +35,13 @@ const duckImage = computed(() => {
 <style scoped>
 .duck {
   position: absolute;
-  bottom: 20%;
-  right: 12%;
-  width: 250px; /* або responsive: clamp(80px, 10vw, 140px) */
-  transform: translate(-50%, 0); /* щоб точка привʼязки була по центру качки */
+  width: 270px;
+  transform: translate(-50%, -100%);
   pointer-events: none;
+  z-index: 2;
 
   .body--dark & {
     filter: brightness(0.7);
-    transition: filter 2s ease;
   }
 }
 </style>
