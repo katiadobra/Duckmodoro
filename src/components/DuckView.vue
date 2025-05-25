@@ -35,7 +35,7 @@ const duckImage = computed(() => {
 <style scoped>
 .duck {
   position: absolute;
-  width: 270px;
+  width: 310px;
   transform: translate(-50%, -100%);
   pointer-events: none;
   z-index: 2;

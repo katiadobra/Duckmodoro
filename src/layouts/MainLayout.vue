@@ -1,10 +1,12 @@
 <template>
   <q-layout view="lHh Lpr lFf" class="background-container" ref="containerRef">
+    <h1 class="h1">Duck Studio</h1>
     <img
       ref="bgRef"
       :alt="isDark ? 'Night background' : 'Day background'"
-      :src="isDark ? nightImage : dayImage"
+      :src="dayImage"
       class="background-image"
+      :class="{ 'dark-mode': isDark }"
       @load="positionDuck"
     />
 
@@ -37,7 +39,6 @@ import PhaseTracker from 'src/components/PhaseTracker.vue'
 import { useQuasar } from 'quasar'
 import { computed } from 'vue'
 import dayImage from '/assets/background-day.png'
-import nightImage from '/assets/background-night.png'
 
 const $q = useQuasar()
 const isDark = computed(() => $q.dark.isActive)
@@ -56,8 +57,8 @@ const duckStyle = reactive({ top: '0px', left: '0px' })
 // Positioning constants
 // These values are based on the design mockup
 // Adjust these values to position the duck correctly
-const anchorX = 0.605
-const anchorY = 0.835
+const anchorX = 0.606
+const anchorY = 0.837
 
 function positionDuck() {
   const img = bgRef.value
@@ -82,7 +83,11 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style>
+<style lang="scss">
+.h1 {
+  text-align: center;
+  font-weight: 600;
+}
 .background-container {
   position: relative;
   width: 100%;
@@ -90,8 +95,16 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: -1;
+  /* transition: filter 0.6s ease-in-out; */
+}
+.dark-mode {
+  filter: hue-rotate(180deg) saturate(1.5) brightness(55%);
 }
 </style>
