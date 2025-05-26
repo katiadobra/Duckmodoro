@@ -1,11 +1,20 @@
 # 🦆 Duckmodoro
 
-Duckmodoro is a cozy Pomodoro timer with ducks.  
-Stay focused, take mindful breaks, and let your duck guide you through your day.
+> Duckmodoro is a cozy Pomodoro timer.  
+> A scientifically unproven but emotionally effective productivity booster powered by tiny ducks.  
+> _Or just watch ducks do yoga, work, and sip coffee._ 🍵🧘‍♀️💼
+
+![Build](https://img.shields.io/github/actions/workflow/status/katiadobra/duckmodoro/deploy.yml?branch=main)
+![License](https://img.shields.io/github/license/katiadobra/duckmodoro)
+![Made with Vue](https://img.shields.io/badge/Made%20with-Vue%203-42b883?logo=vue.js)
 
 ## 📸 Preview
 
 ![screenshot](./public/preview.png)
+
+## ✨ Live Demo
+
+[https://katiadobra.github.io/Duckmodoro/](https://katiadobra.github.io/Duckmodoro/)
 
 ---
 
@@ -28,15 +37,16 @@ Stay focused, take mindful breaks, and let your duck guide you through your day.
 
 - [Vue 3](https://vuejs.org/)
 - Composition API
-- [Quasar Framework (Vite)](https://quasar.dev/)
+- [Quasar Framework](https://quasar.dev/)
 - [Pinia](https://pinia.vuejs.org/) — for global state
-- Vite for ultra-fast development
+- Duck energy
 
 ---
 
 ## 📁 Project Structure
 
 ```plaintext
+
 src/
 ├── assets/ # images, ducks, background, sounds
 ├── components/ # DuckTimer, DuckView, PhaseTracker, SoundToggle
