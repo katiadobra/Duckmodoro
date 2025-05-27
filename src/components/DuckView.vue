@@ -41,7 +41,7 @@ const duckImage = computed(() => {
   z-index: 2;
 
   .body--dark & {
-    filter: brightness(0.7);
+    filter: brightness(0.8);
   }
 }
 </style>

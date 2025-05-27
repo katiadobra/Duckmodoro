@@ -8,12 +8,9 @@ export const useTimerStore = defineStore('timer', () => {
   const currentPhase = computed(() => phases[currentPhaseIndex.value % phases.length])
 
   const durations = {
-    // focus: 25 * 60, // 25 хв
-    // 'short-break': 5 * 60, // 5 хв
-    // 'long-break': 15 * 60, // 15 хв
-    focus: 1, // 25 хв
-    'short-break': 1, // 5 хв
-    'long-break': 2, // 15 хв
+    focus: 25 * 60, // 25 хв
+    'short-break': 5 * 60, // 5 хв
+    'long-break': 15 * 60, // 15 хв
   }
 
   const timeLeft = ref(0)

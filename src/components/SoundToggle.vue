@@ -2,6 +2,7 @@
   <q-btn
     flat
     round
+    class="action-btn"
     :icon="isPlaying ? 'volume_up' : 'volume_off'"
     @click="toggleSound"
     aria-label="Toggle sound"
@@ -28,3 +29,14 @@ function toggleSound() {
   isPlaying.value = !isPlaying.value
 }
 </script>
+<style>
+.action-btn {
+  position: fixed;
+  top: 20px;
+  right: 100px;
+  border: 4px solid;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  z-index: 2;
+}
+</style>

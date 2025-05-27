@@ -12,12 +12,12 @@
 
     <DuckView v-if="duckVisible" :style="duckStyle" />
 
-    <div class="absolute-top-right q-ma-md">
+    <div class="absolute-top-right q-ma-lg">
       <q-btn
         dense
         flat
-        round
         icon="brightness_6"
+        class="action-btn mode-btn"
         @click="toggleTheme"
         :aria-label="isDark ? 'Switch to Day' : 'Switch to Night'"
       />
@@ -39,6 +39,7 @@ import PhaseTracker from 'src/components/PhaseTracker.vue'
 import { useQuasar } from 'quasar'
 import { computed } from 'vue'
 import dayImage from '/assets/background-day.png'
+import '../css/app.scss'
 
 const $q = useQuasar()
 const isDark = computed(() => $q.dark.isActive)
@@ -106,5 +107,9 @@ onBeforeUnmount(() => {
 }
 .dark-mode {
   filter: hue-rotate(180deg) saturate(1.5) brightness(55%);
+}
+.action-btn.mode-btn {
+  right: 20px;
+  font-size: 1.5rem;
 }
 </style>

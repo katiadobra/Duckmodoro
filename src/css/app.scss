@@ -1,7 +1,47 @@
 // app global css in SCSS form
 
-body.body--light {
-  color: $brown-9;
+body {
+  --blue-color: #2a5782;
+  --dark-blue-color: #133154;
+  --navy-blue-color: #0a1f33;
+  --dark-color: #553719;
+  --light-color: #f1d4a6;
+
+  &.body--light {
+    color: var(--dark-color);
+  }
 }
 
-// body.body--dark {}
+// body.body--light {}
+body.body--light {
+  --start-bg: #4caf50; /* зелений */
+  --start-text: white;
+  --start-border-color: #553719;
+
+  --pause-bg: #f1d4a6; /* бежевий */
+  --pause-text: #3a2e2e;
+  --pause-border-color: #553719;
+
+  --reset-bg: #ff7043; /* помаранчево-червоний */
+  --reset-text: white;
+  --reset-border-color: #553719;
+
+  --active-color: var(--blue-color); /* зелений */
+}
+
+/* Dark theme (Quasar adds .body--dark) */
+body.body--dark {
+  --start-bg: #388e3c; /* темно-зелений */
+  --start-text: #e0f2f1;
+  --start-border-color: #388e3c;
+
+  --pause-bg: #b0a89f; /* темніший бежевий */
+  --pause-text: #212121;
+  --pause-border-color: #b0a89f;
+
+  --reset-bg: #d32f2f; /* темно-червоний */
+  --reset-text: #fafafa;
+  --reset-border-color: #d32f2f;
+
+  --active-color: #bc7f25;
+}
