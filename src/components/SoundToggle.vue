@@ -31,7 +31,7 @@ function toggleSound() {
 </script>
 <style>
 .action-btn {
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 100px;
   border: 4px solid;

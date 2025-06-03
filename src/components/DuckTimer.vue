@@ -24,8 +24,8 @@ const reset = () => store.resetTimer()
 <style scoped lang="scss">
 .tracker-board {
   position: absolute;
-  bottom: 10%;
-  left: 17%;
+  bottom: 6%;
+  left: 10%;
   max-width: 240px;
   border-radius: 10px;
   background: #f3d69d;

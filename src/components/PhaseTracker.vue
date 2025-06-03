@@ -7,7 +7,7 @@
       class="row flex items-center q-my-none q-pa-none text-h5 text-bold"
     >
       <q-icon
-        :name="index === currentPhaseIndex && 'arrow_forward_ios'"
+        :name="index === currentPhaseIndex ? 'arrow_forward_ios' : ''"
         :class="index === currentPhaseIndex && 'active on-left'"
         class="on-left"
         size="14px"

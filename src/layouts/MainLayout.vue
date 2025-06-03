@@ -1,18 +1,17 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="background-container" ref="containerRef">
-    <h1 class="h1">Duck Studio</h1>
-    <img
-      ref="bgRef"
-      :alt="isDark ? 'Night background' : 'Day background'"
-      :src="dayImage"
-      class="background-image"
-      :class="{ 'dark-mode': isDark }"
-      @load="positionDuck"
-    />
+  <div class="page-wrapper">
+    <div class="container">
+      <h1 class="h1">Duck Studio</h1>
+      <img
+        ref="bgRef"
+        :alt="isDark ? 'Night background' : 'Day background'"
+        :src="dayImage"
+        class="background-image"
+        :class="{ 'dark-mode': isDark }"
+      />
 
-    <DuckView v-if="duckVisible" :style="duckStyle" />
+      <DuckView class="duck-view" />
 
-    <div class="absolute-top-right q-ma-lg">
       <q-btn
         dense
         flat
@@ -21,14 +20,14 @@
         @click="toggleTheme"
         :aria-label="isDark ? 'Switch to Day' : 'Switch to Night'"
       />
+
+      <DuckTimer />
+
+      <PhaseTracker />
+
+      <SoundToggle />
     </div>
-
-    <DuckTimer />
-
-    <PhaseTracker />
-
-    <SoundToggle />
-  </q-layout>
+  </div>
 </template>
 
 <script setup>
@@ -47,69 +46,55 @@ const isDark = computed(() => $q.dark.isActive)
 function toggleTheme() {
   $q.dark.toggle()
 }
-
-import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
-// Reference to the background image and container
-const bgRef = ref(null)
-const containerRef = ref(null)
-const duckVisible = ref(false)
-const duckStyle = reactive({ top: '0px', left: '0px' })
-
-// Positioning constants
-// These values are based on the design mockup
-// Adjust these values to position the duck correctly
-const anchorX = 0.606
-const anchorY = 0.837
-
-function positionDuck() {
-  const img = bgRef.value
-  const container = containerRef.value
-  if (!img || !container) return
-
-  const rect = img.getBoundingClientRect()
-  if (rect.width === 0 || rect.height === 0) return
-
-  const x = rect.left + rect.width * anchorX
-  const y = rect.top + rect.height * anchorY
-
-  duckStyle.left = `${x}px`
-  duckStyle.top = `${y}px`
-  duckVisible.value = true
-}
-onMounted(() => {
-  window.addEventListener('resize', positionDuck)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', positionDuck)
-})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .h1 {
+  position: fixed;
+  top: 5%;
+  font-size: clamp(3rem, 6rem, 10rem);
   text-align: center;
   font-weight: 600;
+  z-index: 1;
 }
-.background-container {
-  position: relative;
-  width: 100%;
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  overflow: hidden;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  width: min(90vw, 1900px);
+  height: 90vh;
+  border: 4px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: solid 7px var(--dark-color);
+  box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, 0.2);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 .background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
-  /* transition: filter 0.6s ease-in-out; */
+  position: absolute;
+  clip-path: inherit;
+  box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, 0.2);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  z-index: 0;
 }
 .dark-mode {
   filter: hue-rotate(180deg) saturate(1.5) brightness(55%);
 }
 .action-btn.mode-btn {
   right: 20px;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 1.5rem, 2rem);
 }
 </style>

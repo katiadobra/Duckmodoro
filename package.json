@@ -1,8 +1,7 @@
 {
   "name": "duckmodoro-quasar",
   "version": "0.0.1",
-  "description": "A Quasar Project",
-  "productName": "Duckmodoro",
+  "description": "A scientifically unproven but emotionally effective Pomodoro Timer powered by tiny ducks 🦆",
   "author": "katiadobra",
   "type": "module",
   "private": true,
