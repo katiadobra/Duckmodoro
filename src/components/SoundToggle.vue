@@ -33,10 +33,17 @@ function toggleSound() {
 .action-btn {
   position: absolute;
   top: 20px;
-  right: 100px;
+  right: 90px;
   border: 4px solid;
   border-radius: 10px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   z-index: 2;
+}
+
+@media (min-width: 600px) {
+  .action-btn {
+    right: 100px;
+    font-size: 1.3rem;
+  }
 }
 </style>

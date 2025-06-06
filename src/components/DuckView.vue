@@ -32,7 +32,7 @@ const duckImage = computed(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .duck {
   position: absolute;
   left: 59%;
@@ -44,6 +44,12 @@ const duckImage = computed(() => {
 
   .body--dark & {
     filter: brightness(0.8);
+  }
+
+  @media (max-width: 600px) {
+    left: 75%;
+    top: 81%;
+    width: 200px;
   }
 }
 </style>

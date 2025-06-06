@@ -51,8 +51,8 @@ function toggleTheme() {
 <style lang="scss" scoped>
 .h1 {
   position: fixed;
-  top: 5%;
-  font-size: clamp(3rem, 6rem, 10rem);
+  top: 6%;
+  font-size: 3.8rem;
   text-align: center;
   font-weight: 600;
   z-index: 1;
@@ -69,16 +69,13 @@ function toggleTheme() {
   align-items: center;
   position: relative;
   margin: 0 auto;
-  width: min(90vw, 1900px);
-  height: 90vh;
-  border: 4px solid black;
+  width: min(100vw, 1900px);
+  height: 100vh;
+  border: 4px solid var(--dark-color);
   display: flex;
   justify-content: center;
   align-items: center;
   outline: none;
-  border: solid 7px var(--dark-color);
-  box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, 0.2);
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 .background-image {
   width: 100%;
@@ -86,8 +83,6 @@ function toggleTheme() {
   object-fit: cover;
   position: absolute;
   clip-path: inherit;
-  box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, 0.2);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
   z-index: 0;
 }
 .dark-mode {
@@ -95,6 +90,29 @@ function toggleTheme() {
 }
 .action-btn.mode-btn {
   right: 20px;
-  font-size: clamp(1rem, 1.5rem, 2rem);
+  font-size: 1.1rem;
+}
+
+@media (min-width: 600px) {
+  .h1 {
+    top: 5%;
+    font-size: clamp(3rem, 6rem, 10rem);
+  }
+
+  .container {
+    width: min(90vw, 1900px);
+    height: 90vh;
+    border: solid 7px var(--dark-color);
+    box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, 0.2);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  }
+  .background-image {
+    box-shadow: 20px 38px 34px -26px hsla(0, 0%, 0%, 0.2);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  }
+
+  .action-btn.mode-btn {
+    font-size: clamp(1.1rem, 1.5rem, 2rem);
+  }
 }
 </style>

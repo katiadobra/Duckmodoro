@@ -1,6 +1,6 @@
 <template>
   <div class="tracker-board column items-center q-pa-md">
-    <div class="text-h4 text-bold">Focus Time</div>
+    <div class="text-h4 text-bold text-center">Focus Time</div>
     <div class="text-h2 q-my-md text-bold">{{ minutes }}:{{ seconds }}</div>
     <div class="row q-gutter-sm">
       <q-btn class="btn-start" label="Start" @click="start" size="lg" unelevated />
@@ -24,9 +24,10 @@ const reset = () => store.resetTimer()
 <style scoped lang="scss">
 .tracker-board {
   position: absolute;
-  bottom: 6%;
+  bottom: 10%;
   left: 10%;
-  max-width: 240px;
+
+  max-width: 200px;
   border-radius: 10px;
   background: #f3d69d;
   border: 5px solid;
@@ -43,10 +44,10 @@ const reset = () => store.resetTimer()
     border-radius: 5px;
   }
 
-  @media (max-width: 680px) {
-    bottom: auto;
-    top: 10%;
-    left: 18%;
+  @media (min-width: 680px) {
+    bottom: 1%;
+    left: 10%;
+    max-width: 300px;
   }
 }
 
