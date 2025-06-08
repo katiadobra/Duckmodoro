@@ -1,6 +1,6 @@
 <template>
   <div class="tracker-board column items-center q-pa-md">
-    <div class="text-h4 text-bold text-center">Focus Time</div>
+    <div class="text-h4 text-bold text-center">{{ phaseText }}</div>
     <div class="text-h2 q-my-md text-bold">{{ minutes }}:{{ seconds }}</div>
     <div class="row q-gutter-sm">
       <q-btn class="btn-start" label="Start" @click="start" size="lg" unelevated />
@@ -13,9 +13,24 @@
 <script setup>
 import { useTimerStore } from 'src/stores/timer'
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 
 const store = useTimerStore()
-const { minutes, seconds } = storeToRefs(store)
+const { minutes, seconds, currentPhase } = storeToRefs(store)
+
+const phaseText = computed(() => {
+  switch (currentPhase.value) {
+    case 'focus':
+      return 'Focus Time'
+    case 'short-break':
+      return 'Short Break'
+    case 'long-break':
+      return 'Long Break'
+    default:
+      return 'Focus Time'
+  }
+})
+
 const start = () => store.startTimer()
 const pause = () => store.pauseTimer()
 const reset = () => store.resetTimer()
