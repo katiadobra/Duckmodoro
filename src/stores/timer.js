@@ -8,12 +8,16 @@ export const useTimerStore = defineStore('timer', () => {
   const currentPhase = computed(() => phases[currentPhaseIndex.value % phases.length])
 
   const durations = {
-    focus: 25 * 60, // 25 хв
-    'short-break': 5 * 60, // 5 хв
-    'long-break': 15 * 60, // 15 хв
+    focus: 25 * 60, // 25 min
+    'short-break': 5 * 60, // 5 min
+    'long-break': 15 * 60, // 15 min
+    // durations for testing
+    // focus: 5,
+    // 'short-break': 2,
+    // 'long-break': 3,
   }
 
-  const timeLeft = ref(0)
+  const timeLeft = ref(durations[phases[0]])
   const timer = ref(null)
   const isRunning = ref(false)
   const completedCycles = ref(0)
@@ -21,21 +25,21 @@ export const useTimerStore = defineStore('timer', () => {
   const minutes = computed(() => String(Math.floor(timeLeft.value / 60)).padStart(2, '0'))
   const seconds = computed(() => String(timeLeft.value % 60).padStart(2, '0'))
 
-  // 🎵 Підключення звуку
+  // 🎵 sound
   const breakSound = new Audio(breakSoundFile)
-  breakSound.volume = 0.1 // необов’язково: встановити гучність
+  breakSound.volume = 0.1
   breakSound.loop = false
 
-  // 👂 Спостерігаємо за фазою
-  watch(currentPhase, (newPhase) => {
+  watch(currentPhaseIndex, (newIndex) => {
+    const newPhase = phases[newIndex]
     timeLeft.value = durations[newPhase]
 
-    if (['short-break', 'long-break'].includes(newPhase)) {
-      breakSound.currentTime = 0
-      breakSound.play()
-    } else {
-      breakSound.pause()
-    }
+    // if (['short-break', 'long-break'].includes(newPhase)) {
+    //   breakSound.currentTime = 0
+    //   breakSound.play()
+    // } else {
+    //   breakSound.pause()
+    // }
   })
 
   function startTimer() {
@@ -62,9 +66,6 @@ export const useTimerStore = defineStore('timer', () => {
 
   function nextPhase() {
     pauseTimer()
-    // if (currentPhase.value === 'focus') {
-    //   completedCycles.value++
-    // }
     currentPhaseIndex.value++
     if (currentPhaseIndex.value >= phases.length) {
       currentPhaseIndex.value = 0
@@ -72,18 +73,6 @@ export const useTimerStore = defineStore('timer', () => {
     }
     startTimer()
   }
-
-  watch(currentPhaseIndex, (newIndex) => {
-    const newPhase = phases[newIndex]
-    timeLeft.value = durations[newPhase]
-
-    if (['short-break', 'long-break'].includes(newPhase)) {
-      breakSound.currentTime = 0
-      breakSound.play()
-    } else {
-      breakSound.pause()
-    }
-  })
 
   return {
     currentPhase,
