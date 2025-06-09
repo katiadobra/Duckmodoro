@@ -2,8 +2,17 @@
   <div class="tracker-board column items-center q-pa-md">
     <div class="text-h4 text-bold text-center">{{ phaseText }}</div>
     <div class="text-h2 q-my-md text-bold">{{ minutes }}:{{ seconds }}</div>
+    <div v-if="store.isPhaseComplete" class="text-subtitle1 text-center q-mb-sm">
+      Break is over! Start focus time when you're ready
+    </div>
     <div class="row q-gutter-sm">
-      <q-btn class="btn-start" label="Start" @click="start" size="lg" unelevated />
+      <q-btn
+        class="btn-start"
+        :label="store.isPhaseComplete ? 'Start Next Phase' : 'Start'"
+        @click="start"
+        size="lg"
+        unelevated
+      />
       <q-btn class="btn-pause" label="Pause" @click="pause" size="lg" unelevated />
       <q-btn class="btn-reset" label="Reset" @click="reset" size="lg" unelevated />
     </div>

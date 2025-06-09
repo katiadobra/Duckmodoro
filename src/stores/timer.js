@@ -6,15 +6,16 @@ export const useTimerStore = defineStore('timer', () => {
   const phases = ['focus', 'short-break', 'focus', 'short-break', 'focus', 'long-break']
   const currentPhaseIndex = ref(0)
   const currentPhase = computed(() => phases[currentPhaseIndex.value % phases.length])
+  const isPhaseComplete = ref(false)
 
   const durations = {
-    focus: 25 * 60, // 25 min
-    'short-break': 5 * 60, // 5 min
-    'long-break': 15 * 60, // 15 min
+    // focus: 25 * 60, // 25 min
+    // 'short-break': 5 * 60, // 5 min
+    // 'long-break': 15 * 60, // 15 min
     // durations for testing
-    // focus: 5,
-    // 'short-break': 2,
-    // 'long-break': 3,
+    focus: 5,
+    'short-break': 2,
+    'long-break': 3,
   }
 
   const timeLeft = ref(durations[phases[0]])
@@ -44,7 +45,19 @@ export const useTimerStore = defineStore('timer', () => {
 
   function startTimer() {
     if (isRunning.value) return
+
+    // If phase is complete (break ended), move to next focus phase
+    if (isPhaseComplete.value) {
+      currentPhaseIndex.value++
+      if (currentPhaseIndex.value >= phases.length) {
+        currentPhaseIndex.value = 0
+        completedCycles.value++
+      }
+      timeLeft.value = durations[phases[currentPhaseIndex.value]]
+    }
+
     isRunning.value = true
+    isPhaseComplete.value = false
     timer.value = setInterval(() => {
       if (timeLeft.value > 0) {
         timeLeft.value--
@@ -66,12 +79,23 @@ export const useTimerStore = defineStore('timer', () => {
 
   function nextPhase() {
     pauseTimer()
-    currentPhaseIndex.value++
+
+    // If current phase is focus, immediately move to break
+    if (currentPhase.value === 'focus') {
+      currentPhaseIndex.value++
+      const nextPhase = phases[currentPhaseIndex.value]
+      timeLeft.value = durations[nextPhase]
+      startTimer() // Automatically start break
+    } else {
+      // If current phase is break, just mark as complete and wait for user
+      isPhaseComplete.value = true
+    }
+
+    // Handle cycle completion
     if (currentPhaseIndex.value >= phases.length) {
       currentPhaseIndex.value = 0
       completedCycles.value++
     }
-    startTimer()
   }
 
   return {
@@ -82,6 +106,7 @@ export const useTimerStore = defineStore('timer', () => {
     minutes,
     seconds,
     isRunning,
+    isPhaseComplete,
     completedCycles,
     startTimer,
     pauseTimer,
