@@ -47,7 +47,7 @@ const duckImage = computed(() => {
   }
 
   @media (max-width: 600px) {
-    left: 75%;
+    left: 23%;
     top: 81%;
     width: 200px;
   }

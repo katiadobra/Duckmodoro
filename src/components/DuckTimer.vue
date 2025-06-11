@@ -3,12 +3,12 @@
     <div class="text-h4 text-bold text-center">{{ phaseText }}</div>
     <div class="text-h2 q-my-md text-bold">{{ minutes }}:{{ seconds }}</div>
     <div v-if="store.isPhaseComplete" class="text-subtitle1 text-center q-mb-sm">
-      Break is over! Start focus time when you're ready
+      Break is over! Start when you're ready
     </div>
     <div class="row q-gutter-sm">
       <q-btn
         class="btn-start"
-        :label="store.isPhaseComplete ? 'Start Next Phase' : 'Start'"
+        :label="store.isPhaseComplete ? 'Next Phase' : 'Start'"
         @click="start"
         size="lg"
         unelevated
@@ -48,12 +48,13 @@ const reset = () => store.resetTimer()
 <style scoped lang="scss">
 .tracker-board {
   position: absolute;
-  bottom: 10%;
-  left: 10%;
+  bottom: 16%;
+  left: 41%;
 
   max-width: 200px;
   border-radius: 10px;
-  background: #f3d69d;
+  // background: #f3d69d;
+  background-color: rgba($color: #f3d69d, $alpha: 0.8);
   border: 5px solid;
   font-family: 'Quicksand', sans-serif;
 

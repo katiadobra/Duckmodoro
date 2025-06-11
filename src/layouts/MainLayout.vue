@@ -2,13 +2,22 @@
   <div class="page-wrapper">
     <div class="container">
       <h1 class="h1">Duck Studio</h1>
-      <img
-        ref="bgRef"
-        :alt="isDark ? 'Night background' : 'Day background'"
-        :src="dayImage"
-        class="background-image"
-        :class="{ 'dark-mode': isDark }"
-      />
+      <picture class="picture-wrapper">
+        <!--  max 600px -->
+        <source :srcset="xsImage" media="(max-width: 600px)" />
+
+        <!-- max 1024px -->
+        <!-- <source :srcset="xsImage" media="(max-width: 1024px)" /> -->
+
+        <!-- min 1024px -->
+        <img
+          ref="bgRef"
+          :src="dayImage"
+          :alt="isDark ? 'Night background' : 'Day background'"
+          class="background-image"
+          :class="{ 'dark-mode': isDark }"
+        />
+      </picture>
 
       <DuckView class="duck-view" />
 
@@ -38,6 +47,7 @@ import PhaseTracker from 'src/components/PhaseTracker.vue'
 import { useQuasar } from 'quasar'
 import { computed } from 'vue'
 import dayImage from '/assets/background-day.png'
+import xsImage from '/assets/background-xs.png'
 import '../css/app.scss'
 
 const $q = useQuasar()
@@ -50,6 +60,7 @@ function toggleTheme() {
 
 <style lang="scss" scoped>
 .h1 {
+  display: none;
   position: fixed;
   top: 6%;
   font-size: 3.8rem;
@@ -77,6 +88,12 @@ function toggleTheme() {
   align-items: center;
   outline: none;
 }
+.picture-wrapper {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
 .background-image {
   width: 100%;
   height: 100%;
@@ -95,6 +112,7 @@ function toggleTheme() {
 
 @media (min-width: 600px) {
   .h1 {
+    display: block;
     top: 5%;
     font-size: clamp(3rem, 6rem, 10rem);
   }
